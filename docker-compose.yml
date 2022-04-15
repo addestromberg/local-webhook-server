@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  local-webhook-server:
+    image: local-webhook-server
+    build: .
+    environment:
+      NODE_ENV: development
+    ports:
+      - 3000:3000
+    command: npm run dev
+    volumes:
+      # mount current dir into docker container
+      - .:/local-webhook-server
+      # ignore local node_modules, use container
+      - /local-webhook-server/node_modules
